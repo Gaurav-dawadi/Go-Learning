@@ -30,6 +30,15 @@ func cal(a int,b int, performCalculation func(c int,d int) int) int{
 	return performCalculation(a,b)
 }
 
+//Higher Order Function that returns functions from other Functions
+func squareSum(x int) func(y int) func(z int) int{
+	return func(y int) func(z int) int{
+		return func(z int) int {
+			return x*x + y*y + z*z
+		}
+	}
+}
+
 
 func main(){
 	result_sum := doSum()
@@ -38,9 +47,12 @@ func main(){
 	result_partial_sum := partialSum(10)
 	fmt.Println("The result of partial sum is ", result_partial_sum(5))
 
-	result_diff := findDiff(15)
-	fmt.Println("The result of difference is ", result_diff(5))
+	// result_diff := findDiff(15)
+	// fmt.Println("The result of difference is ", result_diff(5))
+	fmt.Println("The result of difference is ", findDiff(15)(5))  // Another way of calling function other than of above way
 
 	result_cal := cal(10,2, func(x int, y int) int {return x+y})
 	fmt.Println("The result of cal is ", result_cal)        // Note: we are not calling result_cal variable
+
+	fmt.Println("The result of squareSum is ", squareSum(5)(5)(5))
 }
