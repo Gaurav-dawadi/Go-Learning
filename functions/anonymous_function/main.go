@@ -1,7 +1,7 @@
 package main
 import ("fmt")
 
-// Assigning function to a variable
+// Assigning function to a variable i.e First class function properties
 var (
 	area = func(l int, b int) int {
 		return l * b
