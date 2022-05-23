@@ -1,0 +1,88 @@
+
+const (
+	A, B int64   = -3 , 5 
+	Y    float32 = 2.718
+)
+
+const (
+	X float32 = 3.14
+	Y           // here must be one identifier
+	Z           // here must be one identifier
+
+	A, B = "Go", "language"
+	C, _
+	// In the above line, the blank identifier
+	// is required to be present.
+)
+Will be As
+const (
+	X float32 = 3.14
+	Y float32 = 3.14
+	Z float32 = 3.14
+
+	A, B = "Go", "language"
+	C, _ = "Go", "language"
+)
+
+
+Iota
+-------
+const (
+	k = 3 // now, iota == 0
+
+	m float32 = iota + .5 // m float32 = 1 + .5
+	n                     // n float32 = 2 + .5
+
+	p = 9             // now, iota == 3
+	q = iota * 2      // q = 4 * 2
+	_                 // _ = 5 * 2
+	r                 // r = 6 * 2
+	s, t = iota, iota // s, t = 7, 7
+	u, v              // u, v = 8, 8
+	_, w              // _, w = 9, 9
+)
+
+const x = iota // x = 0
+const (
+	y = iota // y = 0
+	z        // z = 1
+)
+
+const (
+	Failed = iota - 1 // == -1
+	Unknown           // == 0
+	Succeeded         // == 1
+)
+
+
+
+Scopes of Variables and Named Constants
+-------------------------------------------
+
+const y = 789
+var x int = 123
+
+func main() {
+	// The x variable shadows the above declared
+	// package-level variable x.
+	var x = true
+
+	// A nested code block.
+	{
+		// Here, the left x and y are both
+		// new declared variable. The right
+		// ones are declared in outer blocks.
+		x, y := x, y
+
+		// In this code block, the just new
+		// declared x and y shadow the outer
+		// declared same-name identifiers.
+		x, z := !x, y/10 // only z is new declared
+		y /= 100
+		println(x, y, z) // false 7 78
+	}
+	//
+	
+	println(x) // true
+	println(z) // error: z is undefined.
+}
