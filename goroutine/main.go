@@ -1,4 +1,5 @@
 package main
+
 import (
 	"fmt"
 	"io/ioutil"
@@ -8,7 +9,7 @@ import (
 )
 
 /*
-Goroutines are functions that run independent of each other i.e. concurrently. 
+Goroutines are functions that run independent of each other i.e. concurrently.
 */
 func responseSize(url string) {
 	fmt.Println("Step1: ", url)
